@@ -1,6 +1,9 @@
 
-import express from 'express'
-import bodyParser from 'body-parser'
+
+ const functions = require('firebase-functions')
+
+const express = require('express')
+const bodyParser = require('body-parser')
 
 const app = express()
 app.use(bodyParser.json())
@@ -30,9 +33,7 @@ app.put('/user', (req, res) => {
     res.send("We updated a user: " + req.body.name + " age: " + req.body.age)
 })
 
+// exports.app = functions.https.onRequest(app)
 
-const PORT = 3000
+exports.donation = functions.https.onRequest(app)
 
-app.listen(PORT, () => {
-    console.log("Server is running on port", PORT)
-})
